@@ -1,0 +1,13 @@
+fastapi 
+uvicorn[standard] 
+sentence-transformers 
+networkx 
+numpy 
+torch 
+httpx 
+faiss-gpu-cu12 
+jinja2 
+requests 
+pydantic 
+rank_bm25 
+underthesea

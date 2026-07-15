@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.idea/
+.vscode/
+
+data/*.pkl
+data/*.faiss
+data/*.json
+data/*.graphml
+!data/README.md

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+        name="description"
+        content="Tra cứu và hỏi đáp pháp luật Việt Nam dựa trên nguồn văn bản."
+    >
+    <title>Hỏi đáp pháp luật Việt Nam</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="/" aria-label="Trang chủ">
+                <span class="brand-mark" aria-hidden="true">§</span>
+                <span>
+                    <small>Trợ lý pháp luật AI</small>
+                </span>
+            </a>
+            <div id="systemStatus" class="status" role="status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span id="statusText">Đang kiểm tra hệ thống</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <p class="eyebrow">Tra cứu có căn cứ</p>
+                <h1>Hiểu quy định pháp luật<br>từ chính văn bản nguồn.</h1>
+            </section>
+
+            <section class="workspace" aria-labelledby="questionTitle">
+                <div class="question-panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="step-label">01 · Đặt câu hỏi</p>
+                            <h2 id="questionTitle">Bạn cần tìm hiểu điều gì?</h2>
+                        </div>
+                        <span id="charCount" class="char-count">0 / 2000</span>
+                    </div>
+
+                    <label class="sr-only" for="queryInput">
+                        Câu hỏi pháp luật
+                    </label>
+                    <textarea
+                        id="queryInput"
+                        rows="6"
+                        maxlength="2000"
+                        placeholder="Ví dụ: Đi xe máy vượt đèn đỏ bị phạt bao nhiêu tiền?"
+                    ></textarea>
+
+                    <div class="question-actions">
+                        <p>Nhấn <kbd>Ctrl</kbd> + <kbd>Enter</kbd> để gửi</p>
+                        <button id="askButton" type="button">
+                            <span>Tra cứu ngay</span>
+                            <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="process-panel" aria-label="Quy trình xử lý">
+                    <p class="step-label">Quy trình</p>
+                    <ol>
+                        <li>
+                            <span>01</span>
+                            <div>
+                                <strong>Tìm kiếm kết hợp</strong>
+                                <small>BGE-M3 + FAISS + BM25</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span>02</span>
+                            <div>
+                                <strong>Mở rộng căn cứ</strong>
+                                <small>Knowledge Graph</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span>03</span>
+                            <div>
+                                <strong>Kiểm tra độ liên quan</strong>
+                                <small>CrossEncoder reranker</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span>04</span>
+                            <div>
+                                <strong>Diễn giải câu trả lời</strong>
+                                <small>Qwen3 qua Ollama</small>
+                            </div>
+                        </li>
+                    </ol>
+                </aside>
+            </section>
+
+            <section id="loading" class="loading-card hidden" aria-live="polite">
+                <div class="loader" aria-hidden="true"></div>
+                <div>
+                    <strong>Đang đối chiếu văn bản pháp luật</strong>
+                    <p>Quá trình này có thể mất một chút thời gian.</p>
+                </div>
+            </section>
+
+            <section id="resultArea" class="result-area hidden">
+                <article id="answerBox" class="answer-card">
+                    <div class="section-heading">
+                        <div>
+                            <p class="step-label">02 · Kết quả</p>
+                            <h2>Câu trả lời</h2>
+                        </div>
+                        <button
+                            id="copyButton"
+                            class="copy-button"
+                            type="button"
+                            aria-label="Sao chép câu trả lời"
+                        >
+                            Sao chép
+                        </button>
+                    </div>
+                    <div id="answerContent" class="answer-content"></div>
+                    <p class="disclaimer">
+                        Nội dung mang tính tham khảo từ dữ liệu được cung cấp,
+                        không thay thế tư vấn của người hành nghề luật.
+                    </p>
+                </article>
+
+                <section id="sourcesBox" class="sources-card hidden">
+                    <div class="section-heading">
+                        <div>
+                            <p class="step-label">03 · Đối chiếu</p>
+                            <h2>Top 5 nguồn liên quan</h2>
+                        </div>
+                        <span id="sourceCount" class="source-count"></span>
+                    </div>
+                    <div id="sourcesContent" class="sources-list"></div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
